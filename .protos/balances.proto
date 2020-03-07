@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "Service.Balances.Contracts";
+
+import "google/protobuf/timestamp.proto";
+
+service Balances {
+    rpc GetAll(BalancesGetAllRequest) returns (BalancesGetAllResponse) {}
+
+    rpc GetByAssetId(BalancesGetByAssetIdRequest) returns (BalancesGetByAssetIdResponse) {}
+}
+
+message BalancesGetAllRequest {
+    string walletId = 1;
+}
+
+message BalancesGetByAssetIdRequest {
+    string walletId = 1;
+    string assetId = 2;
+}
+
+message BalancesGetAllResponse {
+    repeated Balance balances = 2;
+}
+
+message BalancesGetByAssetIdResponse {
+    Balance balance = 1;    
+}
+
+message Balance {
+    string assetId = 1;
+    string amount = 2;
+    string reserved = 3;
+    google.protobuf.Timestamp timestamp = 4;
+}
