@@ -4,12 +4,12 @@
     <Version>1.0.0</Version>
     <Authors>Swisschain</Authors>
     <Company>Swisschain</Company>
-    <Product>Swisschain.Service.Balances</Product>
-    <PackageId>Swisschain.Service.Balances</PackageId>
+    <Product>Swisschain.Service.Balances.Client</Product>
+    <PackageId>Swisschain.Service.Balances.Client</PackageId>
     <Description>Client for Swisschain.Service.Balances API</Description>
     <PackageLicenseUrl>https://github.com/SC-Poc/Service.Balances/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/SC-Poc/Service.Balances</PackageProjectUrl>
-    <PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;s=200</PackageIconUrl>
+    <PackageIconUrl>https://avatars3.githubusercontent.com/u/14153330?v=3&amp;amp;s=200</PackageIconUrl>
     <RepositoryUrl>https://github.com/SC-Poc/Service.Balances.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>Swisschain</PackageTags>
