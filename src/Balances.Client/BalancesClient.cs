@@ -1,15 +1,24 @@
-﻿using Balances.Client.Common;
-using Service.Balances.Protos;
+﻿using System;
+using Balances.Client.Api;
+using Balances.Client.Grpc;
 
 namespace Balances.Client
 {
-    public class BalancesClient : BaseGrpcClient, IBalancesClient
+    /// <inheritdoc />
+    public class BalancesClient : IBalancesClient
     {
-        public BalancesClient(string serverGrpcUrl) : base(serverGrpcUrl)
+        /// <summary>
+        /// Initializes a new instance of <see cref="BalancesClient"/>.
+        /// </summary>
+        /// <param name="settings">The client settings.</param>
+        public BalancesClient(BalancesClientSettings settings)
         {
-            Monitoring = new Monitoring.MonitoringClient(Channel);
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+
+            Balances = new BalancesApi(settings.ServiceAddress);
         }
 
-        public Monitoring.MonitoringClient Monitoring { get; }
+        /// <inheritdoc />
+        public IBalancesApi Balances { get; }
     }
 }

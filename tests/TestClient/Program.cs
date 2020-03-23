@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Threading;
 using System.Threading.Tasks;
 using Balances.Client;
-using Service.Balances.Protos;
 
-namespace Balances.TestClient
+namespace TestClient
 {
     class Program
     {
@@ -13,25 +10,16 @@ namespace Balances.TestClient
         {
             Console.WriteLine("Press enter to start");
             Console.ReadLine();
-            var client = new BalancesClient("http://localhost:5001");
 
-            while (true)
-            {
-                try
-                {
-                    var sw = new Stopwatch();
-                    sw.Start();
-                    var result = await client.Monitoring.IsAliveAsync(new IsAliveRequest());
-                    sw.Stop();
-                    Console.WriteLine($"{result.Name}  {sw.ElapsedMilliseconds} ms");
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+            var client = new BalancesClient(new BalancesClientSettings {ServiceAddress = "http://localhost:5001"});
 
-                Thread.Sleep(1000);
-            }
+            var balances = await client.Balances.GetAllAsync("test-2");
+
+            foreach (var balance in balances)
+                Console.WriteLine($"{balance.AssetId}\t{balance.Amount}\t{balance.Timestamp}");
+
+            Console.WriteLine("Done");
+            Console.ReadLine();
         }
     }
 }

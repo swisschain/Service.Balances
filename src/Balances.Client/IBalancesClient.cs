@@ -1,9 +1,15 @@
-﻿using Service.Balances.Protos;
+﻿using Balances.Client.Api;
 
 namespace Balances.Client
 {
+    /// <summary>
+    /// Balances service client.
+    /// </summary>
     public interface IBalancesClient
     {
-        Monitoring.MonitoringClient Monitoring { get; }
+        /// <summary>
+        /// Balances API.
+        /// </summary>
+        IBalancesApi Balances { get; }
     }
 }

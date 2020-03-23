@@ -1,4 +1,5 @@
 using System;
+using Service.Balances.Contracts;
 
 namespace Balances.Client.Models.Wallets
 {
@@ -7,6 +8,21 @@ namespace Balances.Client.Models.Wallets
     /// </summary>
     public class BalanceModel
     {
+        /// <summary>
+        /// Initialized a new instance of <see cref="BalanceModel"/>.
+        /// </summary>
+        public BalanceModel()
+        {
+        }
+
+        internal BalanceModel(Balance balance)
+        {
+            AssetId = balance.AssetId;
+            Amount = decimal.Parse(balance.Amount);
+            Reserved = decimal.Parse(balance.Reserved);
+            Timestamp = balance.Timestamp.ToDateTime();
+        }
+
         /// <summary>
         /// The asset id.
         /// </summary>
